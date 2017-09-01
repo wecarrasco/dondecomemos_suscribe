@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>¿Dónde Comemos?</title>
+
+    <!-- gmaps.js -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACWRPhDuIJszw-aqix0lVacdSEL9GICUc"></script>
+    <script src="https://rawgit.com/HPNeo/gmaps/master/gmaps.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="master.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>¿Dónde Comemos?</h1>
+      <h2>¿Quieres que tus restaurantes favoritos aparezcan en nuestra aplicación para no perderte de ninguna promoción? Llena el siguiente formulario y nosotros lo integraremos</h2>
+      <form action="#" class="form">
+        <!-- <fieldset class="form-fieldset ui-input">
+          <label for="username">
+            <span data-text="Username">Username</span>
+          </label>
+          <input type="text" id="username"> -->
+        <!-- </fieldset> -->
+        <div class="input-group">
+          <span class="input-group-addon">Nombre del Restaurante:</span>
+          <input type="text" class="form-control" required placeholder="Carnitas del Anillo">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Página de Facebook:</span>
+          <input type="text" class="form-control" required placeholder="https://www.facebook.com/dondecomemoshn/">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Dirección:</span>
+          <input type="text" class="form-control" required placeholder="Col. Hato">
+        </div>
+        <h2>Si conoces aproximadamente dónde queda el restaurante, haz click en la ubicación en el siguiente mapa</h2>
+        <br>
+        <div id="map"></div>
+        <hr>
+        <h2>¿Quieres ser el primero en saber cuando lancemos la apliación? Llena los siguientes datos y nosotros te informaremos</h2>
+        <div class="input-group">
+          <span class="input-group-addon">Nombre:</span>
+          <input type="text" class="form-control" required placeholder="Sofia Alvarado">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Correo:</span>
+          <input type="email" class="form-control" required placeholder="correo@gmail.com">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enviarDatos()">ENVIAR</button>
+      </form>
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- <script src="https://raw.githubusercontent.com/HPNeo/gmaps/master/gmaps.js"></script> -->
+    <script type="text/javascript">
+      var map;
+      let latitud;
+      let longitud;
+      $(document).ready(function(){
+        var map = new GMaps({
+          el: '#map',
+          lat:-12.043333,
+          lng: -77.028333,
+          click: function(e){
+            map.removeMarkers();
+            latitud = e.latLng.lat();
+            longitud = e.latLng.lng();
+            map.addMarker({
+              position: e.latLng,
+              title: "Tu Restaurante Favorito"
+            });
+          }
+        });
+
+        GMaps.geolocate({
+          success: function(position){
+            map.setCenter(position.coords.latitude, position.coords.longitude);
+          },
+          error: function(error){
+            alert('Geolocation failed: '+error.message);
+          },
+          not_supported: function(){
+            alert("Your browser does not support geolocation");
+          }
+        });
+
+        google.maps.event.trigger(map, 'resize');
+
+        // google.maps.event.addListener(map, "click", function(e){
+        //   map.removeMarkers();
+        //   alert("entra");
+        //   latitud = e.latLng.lat();
+        //   longitud = e.latLng.lng();
+        //   map.addMarker({
+        //     position: e.latLng,
+        //     title: "Tu Restaurante Favorito"
+        //   });
+        // });
+
+      });
+
+      function enviarDatos(){
+
+      }
+    </script>
+  </body>
+</html>

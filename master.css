@@ -1,0 +1,54 @@
+body{
+  height: 100%;
+  background: url("fondo.jpg");
+  background-size: cover;
+}
+h1{
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+}
+
+h2{
+  font-weight: 400;
+  color: white;
+}
+
+.container{
+  max-width: 100%;
+  margin: 30px auto;
+  padding: 20px 16px 40px 16px;
+  background-color: rgba(72,72,72,0.85);
+  text-align: center;
+  border-radius: 7px;
+}
+
+.form{
+  margin: 0 50px;
+  margin-top: 50px;
+}
+
+.input-group{
+  margin-bottom: 50px;
+  height: 50px;
+}
+
+.input-group input{
+  height: 50px;
+}
+
+.input-group-addon{
+  font-weight: 700;
+}
+
+#map{
+  margin: 0 auto;
+  height: 500px;
+  width: 70%;
+}
+
+.btn{
+  width: 50%;
+  margin: 0 auto;
+}
