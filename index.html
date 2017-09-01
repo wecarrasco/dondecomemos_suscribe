@@ -26,15 +26,19 @@
         <!-- </fieldset> -->
         <div class="input-group">
           <span class="input-group-addon">Nombre del Restaurante:</span>
-          <input type="text" class="form-control" required placeholder="Carnitas del Anillo">
+          <input id="nomRest" type="text" class="form-control" required placeholder="Carnitas del Anillo">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Página de Facebook:</span>
-          <input type="text" class="form-control" required placeholder="https://www.facebook.com/dondecomemoshn/">
+          <input id="pagina" type="text" class="form-control" placeholder="https://www.facebook.com/dondecomemoshn/">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Tags:</span>
+          <input id="tags" type="text" class="form-control" required placeholder="carne, chorizo, carnitas, anillo">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Dirección:</span>
-          <input type="text" class="form-control" required placeholder="Col. Hato">
+          <input id="direccion" type="text" class="form-control" placeholder="Col. Hato">
         </div>
         <h2>Si conoces aproximadamente dónde queda el restaurante, haz click en la ubicación en el siguiente mapa</h2>
         <br>
@@ -43,11 +47,11 @@
         <h2>¿Quieres ser el primero en saber cuando lancemos la apliación? Llena los siguientes datos y nosotros te informaremos</h2>
         <div class="input-group">
           <span class="input-group-addon">Nombre:</span>
-          <input type="text" class="form-control" required placeholder="Sofia Alvarado">
+          <input id="nombre" type="text" class="form-control" placeholder="Sofia Alvarado">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Correo:</span>
-          <input type="email" class="form-control" required placeholder="correo@gmail.com">
+          <input id="correo" type="email" class="form-control" placeholder="correo@gmail.com">
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enviarDatos()">ENVIAR</button>
       </form>
@@ -106,7 +110,27 @@
       });
 
       function enviarDatos(){
+        let nombreRestaurante = $("#nomRest").val();
+        let pagina = $("#pagina").val();
+        let tags = $("#tags").val();
+        let direccion = $("#direccion").val();
+        let nombre = $("#nombre").val();
+        let correo = $("#correo").val();
 
+        let object ={
+          "nombreRestaurante" : nombreRestaurante,
+          "pagina" : pagina,
+          "tags" : tags,
+          "direccion" : direccion,
+          "latitud" : latitud,
+          "longitud" : longitud,
+          "nombre" : nombre,
+          "correo" : correo
+        }
+
+        $.post("http://localhost:8000/v1/agregar", object, function(data){
+          console.log(data);
+        });
       }
     </script>
   </body>
