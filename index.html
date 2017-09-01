@@ -128,9 +128,11 @@
           "correo" : correo
         }
 
-        $.post("http://localhost:8000/v1/agregar", object, function(data){
+        $.post("https://dondecomemos-suscribe.herokuapp.com/v1/agregar", object, function(data){
           console.log(data);
         });
+
+        $('.form')[0].reset();
       }
     </script>
   </body>
