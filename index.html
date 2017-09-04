@@ -10,13 +10,13 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="sweetalert.css">
     <link rel="stylesheet" href="master.css">
   </head>
   <body>
 
     <div class="container">
       <h1>¿Dónde Comemos?</h1>
+      <h2>Nosotros somos Lempira Workstation y estamos creando la aplicacion ¿Donde Comemos?, la cual te ayudara a conocer lugares nuevos donde comer tomando en cuenta tu ubicacion, gustos y presupuesto.</h2>
       <h2>¿Quieres que tus restaurantes favoritos aparezcan en nuestra aplicación para no perderte de ninguna promoción? Llena el siguiente formulario y nosotros lo integraremos</h2>
       <form action="#" class="form">
         <!-- <fieldset class="form-fieldset ui-input">
@@ -27,19 +27,15 @@
         <!-- </fieldset> -->
         <div class="input-group">
           <span class="input-group-addon">Nombre del Restaurante:</span>
-          <input id="nomRest" type="text" class="form-control" required placeholder="Carnitas del Anillo">
+          <input type="text" class="form-control" required placeholder="Ej. Carnitas del Anillo">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Página de Facebook:</span>
-          <input id="pagina" type="text" class="form-control" placeholder="https://www.facebook.com/dondecomemoshn/">
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon">Tags:</span>
-          <input id="tags" type="text" class="form-control" required placeholder="carne, chorizo, carnitas, anillo">
+          <input type="text" class="form-control" required placeholder="Ej. https://www.facebook.com/CARNITAS-DEL-ANILLO-158115617583746/">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Dirección:</span>
-          <input id="direccion" type="text" class="form-control" placeholder="Col. Hato">
+          <input type="text" class="form-control" required placeholder="Ej. Col. Hato">
         </div>
         <h2>Si conoces aproximadamente dónde queda el restaurante, haz click en la ubicación en el siguiente mapa</h2>
         <br>
@@ -48,11 +44,11 @@
         <h2>¿Quieres ser el primero en saber cuando lancemos la apliación? Llena los siguientes datos y nosotros te informaremos</h2>
         <div class="input-group">
           <span class="input-group-addon">Nombre:</span>
-          <input id="nombre" type="text" class="form-control" placeholder="Sofia Alvarado">
+          <input type="text" class="form-control" required placeholder="Ej. Juanito Pérez">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Correo:</span>
-          <input id="correo" type="email" class="form-control" placeholder="correo@gmail.com">
+          <input type="email" class="form-control" required placeholder="Ej. correo@gmail.com">
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enviarDatos()">ENVIAR</button>
       </form>
@@ -63,7 +59,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- <script src="https://raw.githubusercontent.com/HPNeo/gmaps/master/gmaps.js"></script> -->
-    <script src="sweetalert.min.js"></script>
     <script type="text/javascript">
       var map;
       let latitud;
@@ -112,30 +107,7 @@
       });
 
       function enviarDatos(){
-        let nombreRestaurante = $("#nomRest").val();
-        let pagina = $("#pagina").val();
-        let tags = $("#tags").val();
-        let direccion = $("#direccion").val();
-        let nombre = $("#nombre").val();
-        let correo = $("#correo").val();
 
-        let object ={
-          "nombreRestaurante" : nombreRestaurante,
-          "pagina" : pagina,
-          "tags" : tags,
-          "direccion" : direccion,
-          "latitud" : latitud,
-          "longitud" : longitud,
-          "nombre" : nombre,
-          "correo" : correo
-        }
-
-        $.post("https://dondecomemos-suscribe.herokuapp.com/v1/agregar", object, function(data){
-          console.log(data);
-        });
-
-        $('.form')[0].reset();
-        swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
       }
     </script>
   </body>
