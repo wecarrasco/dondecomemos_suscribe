@@ -28,15 +28,19 @@
         <!-- </fieldset> -->
         <div class="input-group">
           <span class="input-group-addon">Nombre del Restaurante:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Carnitas del Anillo">
+          <input type="text" class="form-control" required placeholder="Ej. Carnitas del Anillo" id="nomRest">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Página de Facebook:</span>
-          <input type="text" class="form-control" required placeholder="Ej. https://www.facebook.com/CARNITAS-DEL-ANILLO-158115617583746/">
+          <input type="text" class="form-control" required placeholder="Ej. https://www.facebook.com/CARNITAS-DEL-ANILLO-158115617583746/" id="pagina">
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon">Tags:</span>
+          <input type="text" class="form-control" required placeholder="Ej. Carne, baleadas, pupusas, anillo, carnitas" id="tags">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Dirección:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Col. Hato">
+          <input type="text" class="form-control" required placeholder="Ej. Col. Hato" id="direccion">
         </div>
         <h2>Si conoces aproximadamente dónde queda el restaurante, haz click en la ubicación en el siguiente mapa</h2>
         <br>
@@ -45,11 +49,11 @@
         <h2>¿Quieres ser el primero en saber cuando lancemos la apliación? Llena los siguientes datos y nosotros te informaremos</h2>
         <div class="input-group">
           <span class="input-group-addon">Nombre:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Juanito Pérez">
+          <input type="text" class="form-control" required placeholder="Ej. Juanito Pérez" id="nombre">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Correo:</span>
-          <input type="email" class="form-control" required placeholder="Ej. correo@gmail.com">
+          <input type="email" class="form-control" required placeholder="Ej. correo@gmail.com" id="correo">
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enviarDatos()">ENVIAR</button>
       </form>
