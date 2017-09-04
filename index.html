@@ -20,27 +20,21 @@
       <h2>Nosotros somos Lempira Workstation y estamos creando la aplicación "¿Dónde Comemos?", la cual te ayudará a conocer lugares nuevos donde podes comer, tomando en cuenta tu ubicación, gustos y presupuesto.</h2>
       <h2>¿Quiéres que tus restaurantes favoritos aparezcan en nuestra aplicación para no perderte de ninguna promoción? Llena el siguiente formulario y nosotros lo integraremos</h2>
       <form action="#" class="form">
-        <!-- <fieldset class="form-fieldset ui-input">
-          <label for="username">
-            <span data-text="Username">Username</span>
-          </label>
-          <input type="text" id="username"> -->
-        <!-- </fieldset> -->
         <div class="input-group">
           <span class="input-group-addon">Nombre del Restaurante:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Carnitas del Anillo" id="nomRest">
+          <input type="text" class="form-control"  placeholder="Ej. Carnitas del Anillo" id="nomRest">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Página de Facebook:</span>
-          <input type="text" class="form-control" required placeholder="Ej. https://www.facebook.com/CARNITAS-DEL-ANILLO-158115617583746/" id="pagina">
+          <input type="text" class="form-control"  placeholder="Ej. https://www.facebook.com/CARNITAS-DEL-ANILLO-158115617583746/" id="pagina">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Tags:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Carne, baleadas, pupusas, anillo, carnitas" id="tags">
+          <input type="text" class="form-control"  placeholder="Ej. Carne, baleadas, pupusas, anillo, carnitas" id="tags">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Dirección:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Col. Hato" id="direccion">
+          <input type="text" class="form-control"  placeholder="Ej. Col. Hato" id="direccion">
         </div>
         <h2>Si conoces aproximadamente dónde queda el restaurante, haz click en la ubicación en el siguiente mapa</h2>
         <br>
@@ -49,11 +43,11 @@
         <h2>¿Quieres ser el primero en saber cuando lancemos la apliación? Llena los siguientes datos y nosotros te informaremos</h2>
         <div class="input-group">
           <span class="input-group-addon">Nombre:</span>
-          <input type="text" class="form-control" required placeholder="Ej. Juanito Pérez" id="nombre">
+          <input type="text" class="form-control"  placeholder="Ej. Juanito Pérez" id="nombre">
         </div>
         <div class="input-group">
           <span class="input-group-addon">Correo:</span>
-          <input type="email" class="form-control" required placeholder="Ej. correo@gmail.com" id="correo">
+          <input type="email" class="form-control"  placeholder="Ej. correo@gmail.com" id="correo">
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="enviarDatos()">ENVIAR</button>
       </form>
@@ -119,21 +113,42 @@
         let direccion = $("#direccion").val();
         let nombre = $("#nombre").val();
         let correo = $("#correo").val();
-        let object ={
-          "nombreRestaurante" : nombreRestaurante,
-          "pagina" : pagina,
-          "tags" : tags,
-          "direccion" : direccion,
-          "latitud" : latitud,
-          "longitud" : longitud,
-          "nombre" : nombre,
-          "correo" : correo
+        if(nombreRestaurante === ""){
+          swal("Oops...", "Necesitas escribir al menos el nombre del restaurante", "error");
+        }else{
+          if (nombre === "" && correo === "") {
+            let object ={
+              "nombreRestaurante" : nombreRestaurante,
+              "pagina" : pagina,
+              "tags" : tags,
+              "direccion" : direccion,
+              "latitud" : latitud,
+              "longitud" : longitud
+            }
+            $.post("https://dondecomemos-suscribe.herokuapp.com/v1/agregar", object, function(data){
+            //$.post("http://localhost:8000/v1/agregar", object, function(data){
+              console.log(data);
+            });
+            $('.form')[0].reset();
+            swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
+          }else{
+            let object ={
+              "nombreRestaurante" : nombreRestaurante,
+              "pagina" : pagina,
+              "tags" : tags,
+              "direccion" : direccion,
+              "latitud" : latitud,
+              "longitud" : longitud,
+              "nombre" : nombre,
+              "correo" : correo
+            }
+            $.post("https://dondecomemos-suscribe.herokuapp.com/v1/agregar", object, function(data){
+              console.log(data);
+            });
+            $('.form')[0].reset();
+            swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
+          }
         }
-        $.post("https://dondecomemos-suscribe.herokuapp.com/v1/agregar", object, function(data){
-          console.log(data);
-        });
-        $('.form')[0].reset();
-        swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
       }
     </script>
   </body>
