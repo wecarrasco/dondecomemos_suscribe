@@ -60,11 +60,11 @@
     <!-- <script src="https://raw.githubusercontent.com/HPNeo/gmaps/master/gmaps.js"></script> -->
     <script src="sweetalert.min.js"></script>
     <script type="text/javascript">
-      var map;
+      let map;
       let latitud;
       let longitud;
       $(document).ready(function(){
-        var map = new GMaps({
+         map = new GMaps({
           el: '#map',
           lat:-12.043333,
           lng: -77.028333,
@@ -115,6 +115,7 @@
         let correo = $("#correo").val();
         if(nombreRestaurante === ""){
           swal("Oops...", "Necesitas escribir al menos el nombre del restaurante", "error");
+          map.removeMarkers();
         }else{
           if (nombre === "" && correo === "") {
             let object ={
@@ -130,6 +131,7 @@
               console.log(data);
             });
             $('.form')[0].reset();
+            map.removeMarkers();
             swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
           }else{
             let object ={
@@ -146,6 +148,7 @@
               console.log(data);
             });
             $('.form')[0].reset();
+            map.removeMarkers();
             swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
           }
         }
