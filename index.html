@@ -117,6 +117,7 @@
           swal("Oops...", "Necesitas escribir al menos el nombre del restaurante", "error");
         }else{
           if (nombre === "" && correo === "") {
+            alert("entra1");
             let object ={
               "nombreRestaurante" : nombreRestaurante,
               "pagina" : pagina,
@@ -132,6 +133,7 @@
             $('.form')[0].reset();
             swal("Gracias!", "Agregaremos tu restaurante favorito a nuestra aplicación!", "success");
           }else{
+            alert("entra2");
             let object ={
               "nombreRestaurante" : nombreRestaurante,
               "pagina" : pagina,
